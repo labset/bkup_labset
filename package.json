@@ -1,10 +1,10 @@
 {
-  "name": "@monorepo/root",
+  "name": "@labset/root",
   "version": "1.0.0",
-  "description": "typescript monorepo template",
-  "repository": "git@github.com:viqueen/typescript-monorepo.git",
+  "description": "labset monorepo",
+  "repository": "git@github.com:labset/labset.git",
   "author": "Hasnae R. <>",
-  "license": "Apache-2.0",
+  "license": "Unlicensed",
   "private": true,
   "workspaces": [
     "modules/**"
