@@ -1,4 +1,4 @@
-name: typescript-monorepo Build and Test
+name: labset Build and Test
 on:
   push:
     branches:
@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: "npm"
+          cache: "yarn"
       - run: yarn
       - run: yarn build
       - run: yarn lint
