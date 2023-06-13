@@ -6,9 +6,9 @@ import { AuthenticationEndpointProps } from './types';
 const authenticationEndpoint = async ({
     app,
     product,
-    services
+    coreServices
 }: AuthenticationEndpointProps) => {
-    await googleAuthStrategy({ app, services, product });
+    await googleAuthStrategy({ app, coreServices, product });
     app.post(
         `/labset-gateway/${product.key}/auth/claim/token`,
         claimTokenHandler({ product })

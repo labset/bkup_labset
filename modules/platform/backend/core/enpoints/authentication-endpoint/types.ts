@@ -1,8 +1,5 @@
-import { IAuthIdentityService } from '@labset-platform-backend-core/auth-identity-service';
-import { IAuthSessionService } from '@labset-platform-backend-core/auth-session-service';
-import { ISecretService } from '@labset-platform-backend-core/secret-service';
+import { ICoreServices } from '@labset-platform-backend-core/bootstrap';
 import { Express } from 'express';
-import { SessionData } from 'express-session';
 
 interface AuthenticationEndpointProps {
     app: Express;
@@ -11,11 +8,7 @@ interface AuthenticationEndpointProps {
         baseUrl: string;
         gatewayUrl: string;
     };
-    services: {
-        authIdentity: IAuthIdentityService;
-        authSession: IAuthSessionService<SessionData>;
-        secret: ISecretService;
-    };
+    coreServices: ICoreServices;
 }
 
 export type { AuthenticationEndpointProps };

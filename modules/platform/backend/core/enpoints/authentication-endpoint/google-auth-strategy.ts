@@ -10,9 +10,9 @@ import { AuthenticationEndpointProps } from './types';
 const googleAuthStrategy = async ({
     app,
     product,
-    services
+    coreServices
 }: AuthenticationEndpointProps) => {
-    const { clientID, clientSecret } = await services.secret.googleAuth();
+    const { clientID, clientSecret } = await coreServices.secret.googleAuth();
     const google = new GoogleStrategy(
         {
             clientID,
@@ -23,7 +23,7 @@ const googleAuthStrategy = async ({
         async (_token, _refresh, profile, done) => {
             const { id, _json } = profile;
             const identity =
-                await services.authIdentity.getOrCreateIdentity<GoogleAuthIdentity>(
+                await coreServices.authIdentity.getOrCreateIdentity<GoogleAuthIdentity>(
                     {
                         profileId: id,
                         provider: AuthIdentityProvider.GOOGLE,
