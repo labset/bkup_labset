@@ -1,0 +1,6 @@
+{
+  "name": "@labset-platform-backend-core/with-localstack",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.ts"
+}

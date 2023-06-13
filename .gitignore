@@ -4,3 +4,5 @@
 dist/
 node_modules/
 __generated__/
+tmp/
+cdk.out/
