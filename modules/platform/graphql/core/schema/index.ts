@@ -15,7 +15,7 @@ const config: CodegenConfig = {
             config: {
                 ...backendConfig,
                 contextType:
-                    '@labset-platform-graphql/context#ILabsetApolloContext'
+                    '@labset-platform-graphql-core/context#ILabsetApolloContext'
             }
         },
         '../@types/frontend/__generated__/api.ts': {

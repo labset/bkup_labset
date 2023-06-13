@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "declaration": true,
+    "esModuleInterop": false,
+    "lib": ["dom", "es6"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "dist/jest-tests",
+    "paths": {
+      "@labset/*": ["modules/*"]
+    },
+    "resolveJsonModule": true,
+    "rootDir": "modules",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "ES2017"
+  },
+  "include": [
+    "modules/**/*.test.ts",
+    "modules/**/*.spec.ts",
+    "modules/**/*.test.tsx",
+    "modules/**/*.spec.tsx"
+  ]
+}
