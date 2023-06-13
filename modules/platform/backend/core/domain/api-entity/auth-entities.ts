@@ -15,7 +15,11 @@ enum AuthIdentityProvider {
 interface AuthIdentity extends DocEntity {
     profileId: Identifier;
     provider: AuthIdentityProvider;
-    profile: Record<string, unknown> & { name?: string; picture?: string };
+    profile: Record<string, unknown> & {
+        name?: string;
+        picture?: string;
+        email?: string;
+    };
     payload: Record<string, unknown>;
 }
 
