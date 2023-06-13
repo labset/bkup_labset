@@ -1,0 +1,8 @@
+{
+  "name": "@labset-platform-graphql-core/schema",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "codegen": "graphql-codegen --config index.ts"
+  }
+}

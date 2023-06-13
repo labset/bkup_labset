@@ -1,0 +1,6 @@
+{
+  "name": "@labset-platform-graphql-core/frontend-types",
+  "version": "1.0.0",
+  "main": "./__generated__/api.ts",
+  "private": true
+}
