@@ -1,0 +1,10 @@
+{
+  "name": "@labset-harness/local",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "env:up": "docker compose up -d",
+    "env:stop": "docker compose stop",
+    "env:down": "docker compose down"
+  }
+}

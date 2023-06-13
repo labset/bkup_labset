@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  aws-localstack:
+    image: localstack/localstack:2.0.0
+    environment:
+      - SERVICES=dynamodb,lambda,apigateway,ssm
+    ports:
+      - "4566:4566"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "../../tmp/localstack:/var/lib/localstack"
+    networks:
+      - "local"
+
+  grafana-loki:
+    image: grafana/loki:main-3941767
+    ports:
+      - "3100:3100"
+    volumes:
+      - "../../tmp/loki:/loki"
+    networks:
+      - "local"
+
+  grafana:
+    image: grafana/grafana:9.5.2
+    ports:
+      - "3000:3000"
+    volumes:
+      - "../../tmp/grafana:/var/lib/grafana"
+    networks:
+      - "local"
+
+networks:
+  local:
+    driver: "bridge"

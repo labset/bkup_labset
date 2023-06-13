@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "cli": "ts-node-transpile-only modules/_build/cli/index.ts",
+    "clean": "node clean.js",
     "build": "tsc",
     "build:watch": "tsc --watch",
     "test": "jest",
@@ -40,6 +41,8 @@
     "@types/react-dom": "^18.2.5",
     "@typescript-eslint/eslint-plugin": "^5.59.2",
     "@typescript-eslint/parser": "^5.59.2",
+    "aws-cdk": "^2.83.1",
+    "aws-cdk-local": "^2.18.0",
     "commander": "^10.0.1",
     "eslint": "^8.39.0",
     "eslint-plugin-import": "^2.27.5",
