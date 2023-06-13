@@ -1,0 +1,6 @@
+{
+  "name": "@labset-platform-application-base/aws-constructs",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.ts"
+}
