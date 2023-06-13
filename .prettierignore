@@ -1,4 +1,4 @@
 .idea/
 dist/
-modules/_build/eslint-plugin/**/*.js
 node_modules/
+__generated__/

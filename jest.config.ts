@@ -12,6 +12,19 @@ export default async (): Promise<Config> => {
         globalSetup: '<rootDir>/modules/_test/global-setup.ts',
         globalTeardown: '<rootDir>/modules/_test/global-teardown.ts',
         testMatch: ['**/?(*.)+(spec|test).+(ts)'],
-        verbose: true
+        verbose: true,
+        transform: {
+            '^.+\\.tsx?$': [
+                'ts-jest',
+                {
+                    tsconfig: {
+                        resolveJsonModule: true,
+                        paths: {
+                            '@labset/*': ['modules/*']
+                        }
+                    }
+                }
+            ]
+        }
     };
 };
