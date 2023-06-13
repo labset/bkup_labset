@@ -1,0 +1,14 @@
+type Application {
+  id: ID!
+  key: String!
+  name: String!
+}
+
+type Query {
+  getApplication(applicationId: ID!): Application!
+  listApplications: [Application!]!
+}
+
+type Mutation {
+  syncAtlassianApplications: [Application!]!
+}

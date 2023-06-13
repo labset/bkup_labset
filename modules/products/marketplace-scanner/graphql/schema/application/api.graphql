@@ -1,0 +1,22 @@
+query ListApplications {
+  listApplications {
+    id
+    name
+    key
+  }
+}
+
+query GetApplicationInfo($applicationId: ID!) {
+  getApplication(applicationId: $applicationId) {
+    name
+    key
+    id
+  }
+}
+
+mutation SyncAtlassianApplications {
+  syncAtlassianApplications {
+    name
+    key
+  }
+}

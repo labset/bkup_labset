@@ -1,0 +1,62 @@
+import { ApolloServer } from '@apollo/server';
+import type { ApolloServerPlugin } from '@apollo/server';
+import { expressMiddleware } from '@apollo/server/express4';
+import type { ExpressContextFunctionArgument } from '@apollo/server/express4';
+import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground';
+import { makeExecutableSchema } from '@graphql-tools/schema';
+import { typeDefs } from '@labset-mps-graphql/backend-types';
+import {
+    IMpsApolloContext,
+    MpsApolloContext
+} from '@labset-mps-graphql/context';
+import * as Query from '@labset-mps-graphql/queries';
+import * as Mutation from '@labset-mps-graphql/schema';
+import { ICoreServices } from '@labset-platform-backend-core/bootstrap';
+import { withRequiredUser } from '@labset-platform-backend-core/with-required-user-middleware';
+import { Express } from 'express';
+
+interface MpsGraphqlApiEndpointProps {
+    app: Express;
+    coreServices: ICoreServices;
+}
+
+const mpsGraphqlApiEndpoint = async ({
+    app,
+    coreServices
+}: MpsGraphqlApiEndpointProps) => {
+    const schema = makeExecutableSchema({
+        typeDefs,
+        resolvers: { Query, Mutation }
+    });
+
+    const plugins = [
+        ApolloServerPluginLandingPageGraphQLPlayground({
+            settings: {
+                'editor.reuseHeaders': true,
+                'request.credentials': 'include'
+            }
+        }) as ApolloServerPlugin<IMpsApolloContext>
+    ];
+
+    const context = async ({ req }: ExpressContextFunctionArgument) => {
+        if (!req.user) {
+            throw Error('MPSApolloContext requires an authenticated user');
+        }
+        return new MpsApolloContext({ ...coreServices }, req.user.authIdentity);
+    };
+
+    const server = new ApolloServer<IMpsApolloContext>({
+        schema,
+        plugins,
+        introspection: true
+    });
+    await server.start();
+
+    app.use(
+        `/labset-gateway/mps/graphql-api`,
+        withRequiredUser,
+        expressMiddleware(server, { context })
+    );
+};
+
+export { mpsGraphqlApiEndpoint };

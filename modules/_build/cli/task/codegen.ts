@@ -10,6 +10,13 @@ const codegen = (program: Command) => {
                 stdio: 'inherit'
             }
         );
+        const products = ['mps'];
+        for (const product of products) {
+            execSync(
+                `yarn workspace @labset-${product}-graphql/schema codegen`,
+                { stdio: 'inherit' }
+            );
+        }
     });
 };
 

@@ -1,0 +1,18 @@
+mutation SyncAtlassianApplicationAddons($applicationId: ID!) {
+  syncAtlassianApplicationAddons(applicationId: $applicationId) {
+    name
+    key
+  }
+}
+
+query GetAddonInfo($addonId: ID!) {
+  getAddon(addonId: $addonId) {
+    name
+    key
+    id
+    application {
+      name
+      key
+    }
+  }
+}

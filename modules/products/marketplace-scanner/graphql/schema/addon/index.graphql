@@ -1,0 +1,16 @@
+# noinspection GraphQLTypeRedefinition
+type Addon {
+  id: ID!
+  key: String!
+  name: String!
+  application: Application!
+}
+
+type Query {
+  getAddon(addonId: ID!): Addon!
+  listApplicationAddons(applicationId: ID!): [Addon!]!
+}
+
+type Mutation {
+  syncAtlassianApplicationAddons(applicationId: ID!): [Addon!]!
+}
