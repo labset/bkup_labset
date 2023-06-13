@@ -1,0 +1,6 @@
+{
+  "name": "@labset-mps-graphql/backend-types",
+  "version": "1.0.0",
+  "main": "./__generated__/api.ts",
+  "private": true
+}
