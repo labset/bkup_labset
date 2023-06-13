@@ -1,5 +1,5 @@
 {
-  "name": "@labset-platform-frontend/authentication-context-provider",
+  "name": "@labset-platform-frontend-core/authentication-context-provider",
   "version": "1.0.0",
   "private": true,
   "main": "index.tsx"
