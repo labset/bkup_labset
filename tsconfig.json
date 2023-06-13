@@ -9,7 +9,7 @@
     "moduleResolution": "node",
     "outDir": "dist/modules",
     "paths": {
-      "@monorepo/*": ["modules/*"]
+      "@labset/*": ["modules/*"]
     },
     "resolveJsonModule": true,
     "rootDir": "modules",

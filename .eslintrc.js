@@ -24,7 +24,7 @@ module.exports = {
         '@labset-eslint/import-modules': [
             'error',
             {
-                alias: '@monorepo',
+                alias: '@labset',
                 modulesDir: 'modules',
             },
         ],
