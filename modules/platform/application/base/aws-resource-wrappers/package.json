@@ -1,0 +1,6 @@
+{
+  "name": "@labset-platform-application-base/aws-resource-wrappers",
+  "version": "1.0.0",
+  "privtae": true,
+  "main": "inde.ts"
+}

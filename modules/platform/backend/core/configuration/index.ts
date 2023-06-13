@@ -11,6 +11,10 @@ interface CoreConfiguration {
 
     GOOGLE_CLIENT_ID: string;
     GOOGLE_CLIENT_SECRET: string;
+
+    LOKI_URL: string;
+    LOKI_USERNAME: string;
+    LOKI_TOKEN: string;
 }
 
 const parsedConfig: unknown = dotenv.config({
@@ -24,7 +28,11 @@ const coreConfiguration: CoreConfiguration = {
     COOKIE_SECRET: process.env.COOKIE_SECRET || parsed.COOKIE_SECRET,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || parsed.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET:
-        process.env.GOOGLE_CLIENT_SECRET || parsed.GOOGLE_CLIENT_SECRET
+        process.env.GOOGLE_CLIENT_SECRET || parsed.GOOGLE_CLIENT_SECRET,
+
+    LOKI_URL: process.env.LOKI_URL || parsed.LOKI_URL,
+    LOKI_USERNAME: process.env.LOKI_USERNAME || parsed.LOKI_USERNAME,
+    LOKI_TOKEN: process.env.LOKI_TOKEN || parsed.LOKI_TOKEN
 };
 
 const isLocalstack = () => coreConfiguration.LABSET_ENV === 'localstack';
