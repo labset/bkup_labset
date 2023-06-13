@@ -1,9 +1,7 @@
 import { AuthIdentityProvider } from '@labset-plaform-backend-core/domain-api-entity';
 import { IAuthSessionService } from '@labset-platform-backend-core/auth-session-service';
-import {
-    coreConfiguration,
-    isLocalstack
-} from '@labset-platform-backend-core/configuration';
+import { isLocalstack } from '@labset-platform-backend-core/configuration';
+import { ISecretService } from '@labset-platform-backend-core/secret-service';
 import { Express, urlencoded, json } from 'express';
 import session, { SessionData } from 'express-session';
 import passport from 'passport';
@@ -15,6 +13,7 @@ interface WithPassportAuth {
     app: Express;
     coreServices: {
         authSession: IAuthSessionService<SessionData>;
+        secret: ISecretService;
     };
 }
 
@@ -40,7 +39,7 @@ passport.deserializeUser<Express.User>((user, done) => {
 });
 
 const withPassportAuth = async ({ app, coreServices }: WithPassportAuth) => {
-    const cookieSecret = coreConfiguration.COOKIE_SECRET;
+    const { secret } = await coreServices.secret.cookie();
     const store = new AuthSessionStore(coreServices.authSession);
     const secure = !isLocalstack();
 
@@ -50,7 +49,7 @@ const withPassportAuth = async ({ app, coreServices }: WithPassportAuth) => {
         session({
             genid: () => uid(32),
             name: `labset`,
-            secret: cookieSecret,
+            secret,
             store,
             resave: false,
             saveUninitialized: true,
