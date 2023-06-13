@@ -1,8 +1,10 @@
+import { GraphqlApiProvider } from "@labset-platform-frontend-core/graphql-api-context-provider";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import React, { useMemo } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 
 import { MpsRoutes } from "./../routes";
+import { clientFactory } from "./client-factory";
 
 const MpsApp = () => {
   const theme = useMemo(
@@ -23,7 +25,9 @@ const MpsApp = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <MpsRoutes />
+      <GraphqlApiProvider clientFactory={clientFactory}>
+        <MpsRoutes />
+      </GraphqlApiProvider>
     </ThemeProvider>
   );
 };
