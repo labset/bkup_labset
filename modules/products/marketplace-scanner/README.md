@@ -5,5 +5,5 @@
 - launch mps frontend
 
 ```bash
-yarn workspace @labset-mps-fe/app dev
+yarn workspace @labset-mps-frontend/app dev
 ```
