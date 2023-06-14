@@ -14,7 +14,7 @@ const resources =
     path.join(process.cwd(), '..', 'aws-resources');
 
 ['localstack', 'development', 'production'].forEach(async (envType) => {
-    new LabsetMpsStack(app, `${envType}-labset-core`, {
+    new LabsetMpsStack(app, `${envType}-labset-mps`, {
         env: {
             account: process.env.CDK_DEFAULT_ACCOUNT || 'test',
             region: process.env.CDK_DEFAULT_REGION || 'us-east-1'
