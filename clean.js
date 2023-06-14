@@ -6,6 +6,7 @@ const distros = [
     'tmp',
     'dist',
     'modules/platform/application/core/aws-stacks/cdk.out',
+    'modules/products/marketplace-scanner/application/aws-stacks/cdk.out',
 ];
 
 distros.forEach((dir) => {
