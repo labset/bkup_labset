@@ -10,10 +10,10 @@
     "local:diff": "LABSET_ENV=localstack cdklocal diff localstack-labset-mps",
     "local:deploy": "LABSET_ENV=localstack cdklocal deploy localstack-labset-mps --require-approval never",
     "local:migrate": "LABSET_ENV=localstack ts-node-transpile-only migrate.ts",
-    "dev:bootstrap": "LABSET_ENV=development aws-vault exec hasnae -- cdk bootstrap",
-    "dev:synth": "LABSET_ENV=development aws-vault exec hasnae -- cdk synth development-labset-mps",
-    "dev:diff": "LABSET_ENV=development aws-vault exec hasnae -- cdk diff development-labset-mps",
-    "dev:deploy": "LABSET_ENV=development aws-vault exec hasnae -- cdk deploy development-labset-mps",
-    "dev:migrate": "LABSET_ENV=development aws-vault exec hasnae -- ts-node-transpile-only migrate.ts"
+    "dev:bootstrap": "LABSET_ENV=development aws-vault exec labset-dev -- cdk bootstrap",
+    "dev:synth": "LABSET_ENV=development aws-vault exec labset-dev -- cdk synth development-labset-mps",
+    "dev:diff": "LABSET_ENV=development aws-vault exec labset-dev -- cdk diff development-labset-mps",
+    "dev:deploy": "LABSET_ENV=development aws-vault exec labset-dev -- cdk deploy development-labset-mps",
+    "dev:migrate": "LABSET_ENV=development aws-vault exec labset-dev -- ts-node-transpile-only migrate.ts"
   }
 }

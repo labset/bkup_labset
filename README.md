@@ -20,50 +20,41 @@ This is the Node/TypeScript mono-repo 🎉 ... if you see me write Java here, fe
 
 Cheers
 
-### environment
 
-- **[nvm](https://github.com/nvm-sh/nvm)** to manage node versions.
+### development setup
 
-```bash
-brew install nvm
-```
-
-- **[yarn](https://yarnpkg.com/)** as node package manager
+- install and build
 
 ```bash
-brew install yarn
-```
-
-### house-keeping
-
-- install it
-
-```bash
-nvm install
 yarn
-```
-
-- build it
-
-```bash
 yarn build
 ```
 
-- format it
+- start local harness
 
 ```bash
-yarn format
+yarn workspace @labset-harness/local server:dev
+yarn workspace @labset-local/harness client:dev
 ```
 
-- lint it
+### aws development setup
+
+- get access to aws console
+- install [aws-vault](https://github.com/99designs/aws-vault)
+- configure with generated access key ID and Secret
 
 ```bash
-yarn lint
-yarn lint --fix
+aws-vault add <name>
 ```
 
-- test it
+- execute command
 
 ```bash
-yarn test
+aws-vault exec <name> -- aws s3 ls
+```
+
+- open a browser window and login to aws console
+
+```bash
+aws-vault login <name>
 ```
