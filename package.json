@@ -44,6 +44,7 @@
     "aws-cdk": "^2.83.1",
     "aws-cdk-local": "^2.18.0",
     "commander": "^10.0.1",
+    "esbuild": "^0.18.2",
     "eslint": "^8.39.0",
     "eslint-plugin-import": "^2.27.5",
     "fs-directory": "^1.0.0",
