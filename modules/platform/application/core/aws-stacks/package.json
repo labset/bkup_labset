@@ -1,5 +1,5 @@
 {
-  "name": "@labset-core-aws/aws-stacks",
+  "name": "@labset-core-application/aws-stacks",
   "version": "1.0.0",
   "private": true,
   "main": "index.ts",

@@ -9,8 +9,8 @@ import {
     IMpsApolloContext,
     MpsApolloContext
 } from '@labset-mps-graphql/context';
+import * as Mutation from '@labset-mps-graphql/mutations';
 import * as Query from '@labset-mps-graphql/queries';
-import * as Mutation from '@labset-mps-graphql/schema';
 import { ICoreServices } from '@labset-platform-backend-core/bootstrap';
 import { withRequiredUser } from '@labset-platform-backend-core/with-required-user-middleware';
 import { Express } from 'express';
