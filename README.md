@@ -20,7 +20,6 @@ This is the Node/TypeScript mono-repo 🎉 ... if you see me write Java here, fe
 
 Cheers
 
-
 ### development setup
 
 - install and build
