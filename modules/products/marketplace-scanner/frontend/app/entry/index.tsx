@@ -1,3 +1,5 @@
+import { mpsGateway } from "@labset-mps-frontend/mps-gateway-component";
+import { AuthenticationProvider } from "@labset-platform-frontend-core/authentication-context-provider";
 import { GraphqlApiProvider } from "@labset-platform-frontend-core/graphql-api-context-provider";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import React, { useMemo } from "react";
@@ -25,9 +27,13 @@ const MpsApp = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <GraphqlApiProvider clientFactory={clientFactory}>
-        <MpsRoutes />
-      </GraphqlApiProvider>
+      <AuthenticationProvider
+        product={{ key: "mps", gatewayUrl: mpsGateway.url }}
+      >
+        <GraphqlApiProvider clientFactory={clientFactory}>
+          <MpsRoutes />
+        </GraphqlApiProvider>
+      </AuthenticationProvider>
     </ThemeProvider>
   );
 };
