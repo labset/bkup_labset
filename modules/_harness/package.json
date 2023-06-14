@@ -5,6 +5,7 @@
   "scripts": {
     "env:up": "docker compose up -d",
     "env:stop": "docker compose stop",
-    "env:down": "docker compose down"
+    "env:down": "docker compose down",
+    "server:dev": "yarn env:up && nodemon"
   }
 }

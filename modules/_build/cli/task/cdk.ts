@@ -10,7 +10,7 @@ const cdk = (program: Command) => {
         .action((action, opts) => {
             const knownActions = ['bootstrap', 'synth', 'diff', 'deploy'];
             if (knownActions.includes(action)) {
-                const workspaceName = `@labset-${opts.target}-aws/aws-stacks`;
+                const workspaceName = `@labset-${opts.target}-application/aws-stacks`;
                 execSync(
                     `yarn workspace ${workspaceName} ${opts.env}:${action}`,
                     { stdio: 'inherit' }
