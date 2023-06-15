@@ -6,6 +6,7 @@
     "env:up": "docker compose up -d",
     "env:stop": "docker compose stop",
     "env:down": "docker compose down",
-    "server:dev": "yarn env:up && nodemon"
+    "server:dev": "yarn env:up && nodemon",
+    "client:dev": "webpack serve"
   }
 }

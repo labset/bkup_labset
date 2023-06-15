@@ -41,7 +41,6 @@ passport.deserializeUser<Express.User>((user, done) => {
 const withPassportAuth = async ({ app, coreServices }: WithPassportAuth) => {
     const { secret } = await coreServices.secret.cookie();
     const store = new AuthSessionStore(coreServices.authSession);
-    const secure = !isLocalstack();
 
     app.use(
         json(),
@@ -53,7 +52,9 @@ const withPassportAuth = async ({ app, coreServices }: WithPassportAuth) => {
             store,
             resave: false,
             saveUninitialized: true,
-            cookie: { secure, sameSite: 'none' }
+            cookie: isLocalstack()
+                ? { secure: false }
+                : { secure: true, sameSite: 'none' }
         }),
         passport.initialize(),
         passport.session()
