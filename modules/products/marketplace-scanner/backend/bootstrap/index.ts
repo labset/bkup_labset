@@ -1,3 +1,8 @@
+import { AddonService, IAddonService } from '@labset-mps-backend/addon-service';
+import {
+    ApplicationService,
+    IApplicationService
+} from '@labset-mps-backend/application-service';
 import { IMpsDocAccess } from '@labset-mps-backend/domain-api-access';
 import {
     mpsDocAccess,
@@ -9,12 +14,18 @@ interface IMpsDbClients {
     dynamoDbClients: MpsDynamoDbClients;
 }
 
+interface IMpsServices {
+    application: IApplicationService;
+    addon: IAddonService;
+}
+
 interface IMpsBootstrap {
     mps: {
         dbClients: IMpsDbClients;
         access: {
             doc: IMpsDocAccess;
         };
+        services: IMpsServices;
     };
 }
 
@@ -41,15 +52,20 @@ const mpsBootstrap = async (options: {
     const access = {
         doc: mpsDocAccess(dynamoDbClients)
     };
+    const services = {
+        application: new ApplicationService(access.doc),
+        addon: new AddonService(access.doc)
+    };
     return {
         mps: {
             dbClients: {
                 dynamoDbClients
             },
-            access
+            access,
+            services
         }
     };
 };
 
-export type { IMpsBootstrap };
+export type { IMpsBootstrap, IMpsServices };
 export { mpsMigrations, mpsBootstrap };

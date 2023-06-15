@@ -1,4 +1,5 @@
 import { mpsApiGateway } from '@labset-mps-backend/api-gateway';
+import { mpsBootstrap } from '@labset-mps-backend/boostrap';
 import { localstackDynamoDbClientConfig } from '@labset-plaform-backend-base/domain-dynamodb-access';
 import { withServerlessExpress } from '@labset-platform-application-base/aws-resource-wrappers';
 import { coreBootstrap } from '@labset-platform-backend-core/bootstrap';
@@ -16,7 +17,11 @@ const internal = async (app: Express) => {
         runUpgrade: false,
         dynamoDbClientConfig
     });
-    await mpsApiGateway({ app, core });
+    const { mps } = await mpsBootstrap({
+        runUpgrade: false,
+        dynamoDbClientConfig
+    });
+    await mpsApiGateway({ app, core, mps });
 };
 
 export const handler = withServerlessExpress(internal);

@@ -1,0 +1,6 @@
+{
+  "name": "@labset-mps-frontend/application-card-component",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.tsx"
+}

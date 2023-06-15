@@ -17,12 +17,14 @@ import styles from "./index.module.scss";
 
 interface UserProfileProps {
   userDisplayName: string;
+  userEmail: string;
   userAvatar: string;
   onSignOut: () => void;
 }
 
 const UserProfile = ({
   userDisplayName,
+  userEmail,
   userAvatar,
   onSignOut,
 }: UserProfileProps) => {
@@ -41,6 +43,7 @@ const UserProfile = ({
         <Avatar variant="rounded" src={userAvatar}></Avatar>
         <div className={styles.information}>
           <Typography className={styles.name}>{userDisplayName}</Typography>
+          <Typography className={styles.role}>{userEmail}</Typography>
         </div>
       </div>
       <Menu

@@ -43,7 +43,6 @@ const TopNavigation = ({
         <Toolbar disableGutters>
           <Logo sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
-            variant="h6"
             component="a"
             href="/"
             sx={{
@@ -64,6 +63,7 @@ const TopNavigation = ({
             {profile && (
               <UserProfile
                 userDisplayName={profile.name}
+                userEmail={profile.email}
                 userAvatar={profile.pictureUrl}
                 onSignOut={actions.signOut}
               />

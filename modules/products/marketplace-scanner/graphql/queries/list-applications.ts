@@ -3,9 +3,10 @@ import { QueryResolvers } from '@labset-mps-graphql/backend-types';
 const listApplications: QueryResolvers['listApplications'] = async (
     _,
     _input,
-    _ctx
+    ctx
 ) => {
-    throw Error('implement me');
+    const { mpsServices } = await ctx.authenticated();
+    return mpsServices.application.list();
 };
 
 export { listApplications };

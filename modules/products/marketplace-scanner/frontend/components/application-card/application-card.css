@@ -1,0 +1,30 @@
+.application-card {
+  margin: 1rem;
+  padding: 1rem;
+  box-shadow: var(
+    --ds-shadow-overlay,
+    0 4px 8px -2px rgba(9, 30, 66, 0.25),
+    0 0 1px rgba(9, 30, 66, 0.31)
+  );
+  border-radius: 5px;
+  width: 20rem;
+  display: inline-flex;
+}
+
+.application-card-title {
+  display: flex;
+  align-items: center;
+}
+
+.application-card-title a {
+  color: #0052cc;
+  display: block;
+  text-decoration: none;
+  font-size: 20px;
+  margin-left: 1rem;
+  line-height: initial;
+}
+
+.application-card-title a:hover {
+  text-decoration: none;
+}

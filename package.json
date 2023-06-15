@@ -26,6 +26,7 @@
     "@graphql-codegen/typescript-react-apollo": "^3.3.7",
     "@graphql-codegen/typescript-resolvers": "^4.0.0",
     "@labset-eslint/eslint-plugin": "^1.3.0",
+    "@svgr/webpack": "^8.0.1",
     "@types/aws-lambda": "^8.10.117",
     "@types/cors": "^2.8.13",
     "@types/eslint": "^8.37.0",

@@ -1,3 +1,4 @@
+import { IMpsServices } from '@labset-mps-backend/boostrap';
 import {
     AuthIdentity,
     AuthIdentityProvider
@@ -10,6 +11,7 @@ import {
 
 interface IMpsAuthenticated {
     identity: AuthIdentity;
+    mpsServices: IMpsServices;
 }
 
 interface IMpsApolloContext extends ILabsetApolloContext {
@@ -23,6 +25,7 @@ class MpsApolloContext
     private _authenticated?: IMpsAuthenticated;
 
     constructor(
+        private readonly mpsServices: IMpsServices,
         coreServices: ICoreServices,
         authIdentity: {
             provider: AuthIdentityProvider;
@@ -36,7 +39,8 @@ class MpsApolloContext
         if (this._authenticated) return this._authenticated;
         const { identity } = await this.profile();
         this._authenticated = {
-            identity
+            identity,
+            mpsServices: { ...this.mpsServices }
         };
         return this._authenticated;
     }
