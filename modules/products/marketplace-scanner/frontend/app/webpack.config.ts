@@ -38,6 +38,10 @@ const config: Configuration & DevConfiguration = {
                         loader: 'file-loader'
                     }
                 ]
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-inline-loader'
             }
         ]
     },
