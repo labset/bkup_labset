@@ -7,6 +7,8 @@ const distros = [
     'dist',
     'modules/platform/application/core/aws-stacks/cdk.out',
     'modules/products/marketplace-scanner/application/aws-stacks/cdk.out',
+    'modules/products/marketplace-scanner/frontend/app/dist',
+    'modules/products/marketplace-scanner/frontend/app/.firebase',
 ];
 
 distros.forEach((dir) => {

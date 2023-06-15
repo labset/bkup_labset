@@ -1,4 +1,4 @@
-import { isLocalstack } from '@labset-platform-backend-core/configuration';
+import { isDevelopment } from '@labset-platform-backend-core/configuration';
 
 interface MpsConfiguration {
     BASE_URL: string;
@@ -6,14 +6,21 @@ interface MpsConfiguration {
 }
 
 const gatewayUrl = () => {
-    if (isLocalstack()) {
-        return `https://zgq56yzlza.execute-api.localhost.localstack.cloud:4566/prod/labset-gateway/mps`;
+    if (isDevelopment()) {
+        return 'https://jvflhc6us7.execute-api.us-east-1.amazonaws.com/prod/labset-gateway/mps';
     }
     return 'http://localhost:4000/labset-gateway/mps';
 };
 
+const baseUrl = () => {
+    if (isDevelopment()) {
+        return 'https://marketplace-scanner-a6ff2.web.app';
+    }
+    return 'http://localhost:8000';
+};
+
 const mpsConfiguration: MpsConfiguration = {
-    BASE_URL: 'http://localhost:8000',
+    BASE_URL: baseUrl(),
     GATEWAY_URL: gatewayUrl()
 };
 
