@@ -1,12 +1,15 @@
 import path from 'path';
 
 import { mpsConfiguration } from '@labset-mps-backend/configuration';
+import { isLocalstack } from '@labset-platform-backend-core/configuration';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { Configuration, DefinePlugin } from 'webpack';
 import { Configuration as DevConfiguration } from 'webpack-dev-server';
 
+const mode = isLocalstack() ? 'development' : 'production';
+
 const config: Configuration & DevConfiguration = {
-    mode: 'development',
+    mode,
     devServer: {
         port: 8000
     },

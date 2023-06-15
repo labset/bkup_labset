@@ -36,6 +36,7 @@ const coreConfiguration: CoreConfiguration = {
 };
 
 const isLocalstack = () => coreConfiguration.LABSET_ENV === 'localstack';
+const isDevelopment = () => coreConfiguration.LABSET_ENV === 'development';
 
-export { coreConfiguration, isLocalstack };
+export { coreConfiguration, isLocalstack, isDevelopment };
 export type { CoreConfiguration, LabsetEnvType };
