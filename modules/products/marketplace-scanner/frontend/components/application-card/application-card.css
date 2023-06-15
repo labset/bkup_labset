@@ -11,11 +11,6 @@
   display: inline-flex;
 }
 
-.application-card-logo {
-  height: 2rem;
-  object-fit: cover;
-}
-
 .application-card-title {
   display: flex;
   align-items: center;

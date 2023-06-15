@@ -4,6 +4,7 @@ import { expressMiddleware } from '@apollo/server/express4';
 import type { ExpressContextFunctionArgument } from '@apollo/server/express4';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground';
 import { makeExecutableSchema } from '@graphql-tools/schema';
+import { IMpsServices } from '@labset-mps-backend/boostrap';
 import { typeDefs } from '@labset-mps-graphql/backend-types';
 import {
     IMpsApolloContext,
@@ -18,11 +19,13 @@ import { Express } from 'express';
 interface MpsGraphqlApiEndpointProps {
     app: Express;
     coreServices: ICoreServices;
+    mpsServices: IMpsServices;
 }
 
 const mpsGraphqlApiEndpoint = async ({
     app,
-    coreServices
+    coreServices,
+    mpsServices
 }: MpsGraphqlApiEndpointProps) => {
     const schema = makeExecutableSchema({
         typeDefs,
@@ -42,7 +45,11 @@ const mpsGraphqlApiEndpoint = async ({
         if (!req.user) {
             throw Error('MPSApolloContext requires an authenticated user');
         }
-        return new MpsApolloContext({ ...coreServices }, req.user.authIdentity);
+        return new MpsApolloContext(
+            { ...mpsServices },
+            { ...coreServices },
+            req.user.authIdentity
+        );
     };
 
     const server = new ApolloServer<IMpsApolloContext>({

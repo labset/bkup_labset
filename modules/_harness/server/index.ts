@@ -1,4 +1,5 @@
 import { mpsApiGateway } from '@labset-mps-backend/api-gateway';
+import { mpsBootstrap } from '@labset-mps-backend/boostrap';
 import { localstackDynamoDbClientConfig } from '@labset-plaform-backend-base/domain-dynamodb-access';
 import { coreBootstrap } from '@labset-platform-backend-core/bootstrap';
 import { withLocalstack } from '@labset-platform-backend-core/with-localstack';
@@ -20,7 +21,11 @@ const configureEndpoints = async ({
         runUpgrade: true,
         dynamoDbClientConfig: localstackDynamoDbClientConfig
     });
-    await mpsApiGateway({ app, core });
+    const { mps } = await mpsBootstrap({
+        runUpgrade: true,
+        dynamoDbClientConfig: localstackDynamoDbClientConfig
+    });
+    await mpsApiGateway({ app, core, mps });
     return { app };
 };
 

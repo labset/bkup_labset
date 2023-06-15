@@ -41,7 +41,7 @@ const config: Configuration & DevConfiguration = {
             },
             {
                 test: /\.svg$/,
-                loader: 'svg-inline-loader'
+                use: ['@svgr/webpack']
             }
         ]
     },
