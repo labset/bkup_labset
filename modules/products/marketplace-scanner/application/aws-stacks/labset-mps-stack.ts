@@ -37,7 +37,7 @@ class LabsetMpsStack extends Stack {
             `${envType}-mps-dynamodb-policy`,
             {
                 envType,
-                productName: 'mps',
+                productName: 'atlassian-marketplace',
                 env: { account: this.account, region: this.region }
             }
         );
