@@ -24,7 +24,8 @@ class DynamodbPolicyStatements extends Construct {
                 actions: [
                     'dynamodb:GetItem',
                     'dynamodb:PutItem',
-                    'dynamodb:DeleteItem'
+                    'dynamodb:DeleteItem',
+                    'dynamodb:Query'
                 ],
                 resources: [
                     `arn:aws:dynamodb:${env.region}:${env.account}:table/${envType}-${productName}-*`
