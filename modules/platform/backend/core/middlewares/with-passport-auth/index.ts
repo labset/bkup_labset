@@ -53,7 +53,7 @@ const withPassportAuth = async ({ app, coreServices }: WithPassportAuth) => {
             store,
             resave: false,
             saveUninitialized: true,
-            cookie: { secure }
+            cookie: { secure, sameSite: 'none' }
         }),
         passport.initialize(),
         passport.session()
