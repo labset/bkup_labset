@@ -3,6 +3,7 @@ import {
   BitbucketIcon,
   ConfluenceIcon,
   CrowdIcon,
+  FisheyeIcon,
   JiraIcon,
   OpsGenieIcon,
   StatusPageIcon,
@@ -28,6 +29,8 @@ const ApplicationLogo = ({ applicationKey }: { applicationKey: string }) => {
       return <ConfluenceIcon />;
     case "crowd":
       return <CrowdIcon />;
+    case "fecru":
+      return <FisheyeIcon />;
     case "jira":
       return <JiraIcon />;
     case "opsgenie":
