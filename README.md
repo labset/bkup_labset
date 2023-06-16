@@ -26,6 +26,7 @@ Cheers
 
 ```bash
 yarn
+yarn cli codegen
 yarn build
 ```
 
