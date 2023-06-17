@@ -1,0 +1,6 @@
+{
+  "name": "@labset-satellite-backend/feed-item-processor-service",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.ts"
+}

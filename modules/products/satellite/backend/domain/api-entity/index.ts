@@ -5,4 +5,8 @@ interface FeedItem {
     publishedDate: Date;
 }
 
-export type { FeedItem };
+interface Item extends FeedItem {
+    id: string;
+}
+
+export type { FeedItem, Item };
