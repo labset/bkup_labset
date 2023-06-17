@@ -42,6 +42,18 @@ services:
     networks:
       - "local"
 
+  mongodb-express:
+    image: mongo-express:0.54.0
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: labset
+      ME_CONFIG_MONGODB_ADMINPASSWORD: labset
+      ME_CONFIG_MONGODB_URL: mongodb://labset:labset@mongodb:27017/
+    networks:
+      - "local"
+
 networks:
   local:
     driver: "bridge"
