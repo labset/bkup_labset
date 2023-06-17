@@ -9,4 +9,11 @@
     enabled: true,
     labels: ["security"],
   },
+  packageRules: [
+    {
+      groupName: "jest monorepo",
+      matchSourceUrls: ["https://github.com/kulshekhar/ts-jest"],
+      matchUpdateTypes: ["major"],
+    },
+  ],
 }
