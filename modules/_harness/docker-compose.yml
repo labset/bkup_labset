@@ -30,6 +30,18 @@ services:
     networks:
       - "local"
 
+  mongodb:
+    image: mongo:6.0-jammy
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: labset
+      MONGO_INITDB_ROOT_PASSWORD: labset
+    volumes:
+      - "../../tmp/mongodb:/data/db"
+    networks:
+      - "local"
+
 networks:
   local:
     driver: "bridge"
