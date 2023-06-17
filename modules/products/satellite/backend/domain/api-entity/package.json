@@ -1,5 +1,5 @@
 {
-  "name": "@labset-satellite-backend/parser-service",
+  "name": "@labset-satellite-backend/domain-api-entity",
   "version": "1.0.0",
   "private": true,
   "main": "index.ts"
