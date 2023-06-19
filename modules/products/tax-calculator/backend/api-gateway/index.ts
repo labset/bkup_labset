@@ -10,8 +10,15 @@ const taxApiGateway = async ({
     app,
     core
 }: { app: Express } & ICoreBootstrap) => {
-    withCors({ app, options: { origin: [taxConfiguration.BASE_URL] } });
-    await withPassportAuth({ app, coreServices: { ...core.services } });
+    withCors({
+        app,
+        product: { key: 'tax', baseUrl: taxConfiguration.BASE_URL }
+    });
+    await withPassportAuth({
+        app,
+        coreServices: { ...core.services },
+        product: { key: 'tax' }
+    });
     await taxAuthenticationEndpoint({
         app,
         coreServices: { ...core.services }
