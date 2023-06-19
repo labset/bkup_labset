@@ -12,6 +12,11 @@ query GetApplicationInfo($applicationId: ID!) {
     key
     id
   }
+  listApplicationAddons(applicationId: $applicationId) {
+    name
+    key
+    id
+  }
 }
 
 mutation SyncAtlassianApplications {
