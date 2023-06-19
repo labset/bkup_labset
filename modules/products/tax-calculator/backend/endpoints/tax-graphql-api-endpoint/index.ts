@@ -11,6 +11,7 @@ import {
     ITaxApolloContext,
     TaxApolloContext
 } from '@labset-tax-graphql/context';
+import * as Query from '@labset-tax-graphql/queries';
 import { Express } from 'express';
 
 interface TaxGraphqlApiEndpointProps {
@@ -24,7 +25,7 @@ const taxGraphqlApiEndpoint = async ({
 }: TaxGraphqlApiEndpointProps) => {
     const schema = makeExecutableSchema({
         typeDefs,
-        resolvers: {}
+        resolvers: { Query }
     });
 
     const plugins = [

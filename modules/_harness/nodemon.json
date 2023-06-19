@@ -1,5 +1,5 @@
 {
-  "watch": ["../platform", "../products"],
+  "watch": ["./server", "../platform", "../products"],
   "ext": "ts,json",
   "exec": "ts-node server/index.ts"
 }

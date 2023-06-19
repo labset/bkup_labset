@@ -12,8 +12,15 @@ const mpsApiGateway = async ({
     core,
     mps
 }: { app: Express } & ICoreBootstrap & IMpsBootstrap) => {
-    withCors({ app, options: { origin: [mpsConfiguration.BASE_URL] } });
-    await withPassportAuth({ app, coreServices: { ...core.services } });
+    withCors({
+        app,
+        product: { key: 'mps', baseUrl: mpsConfiguration.BASE_URL }
+    });
+    await withPassportAuth({
+        app,
+        coreServices: { ...core.services },
+        product: { key: 'mps' }
+    });
     await mpsAuthenticationEndpoint({
         app,
         coreServices: { ...core.services }

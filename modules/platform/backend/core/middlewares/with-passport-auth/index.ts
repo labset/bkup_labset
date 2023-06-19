@@ -15,6 +15,9 @@ interface WithPassportAuth {
         authSession: IAuthSessionService<SessionData>;
         secret: ISecretService;
     };
+    product: {
+        key: string;
+    };
 }
 
 declare global {
@@ -38,7 +41,11 @@ passport.deserializeUser<Express.User>((user, done) => {
     done(null, user);
 });
 
-const withPassportAuth = async ({ app, coreServices }: WithPassportAuth) => {
+const withPassportAuth = async ({
+    app,
+    coreServices,
+    product
+}: WithPassportAuth) => {
     const { secret } = await coreServices.secret.cookie();
     const store = new AuthSessionStore(coreServices.authSession);
 
@@ -47,7 +54,7 @@ const withPassportAuth = async ({ app, coreServices }: WithPassportAuth) => {
         urlencoded({ extended: true }),
         session({
             genid: () => uid(32),
-            name: `labset`,
+            name: `labset_${product.key}`,
             secret,
             store,
             resave: false,
