@@ -1,0 +1,6 @@
+{
+  "name": "@labset-mps-frontend/sync-addon-button-feature",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.tsx"
+}
