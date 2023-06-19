@@ -24,6 +24,7 @@ yarn
 - build it
 
 ```bash
+yarn cli codegen
 yarn build
 ```
 
