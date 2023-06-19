@@ -13,6 +13,9 @@ const gatewayUrl = () => {
 };
 
 const baseUrl = () => {
+    if (isDevelopment()) {
+        return 'https://tax-calculator-1cc6d.web.app';
+    }
     return 'http://localhost:7000';
 };
 
