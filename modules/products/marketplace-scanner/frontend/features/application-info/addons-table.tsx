@@ -1,7 +1,7 @@
 import { ApolloError } from "@apollo/client";
 import { Alert, Box, LinearProgress } from "@mui/material";
-import type { GridColDef } from "@mui/x-data-grid";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import type { GridColDef, GridColumnHeaderParams } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import React from "react";
 
 interface AddonInfo {
@@ -16,11 +16,14 @@ interface AddonsTableProps {
   rows: AddonInfo[];
 }
 
+const withHeader = (params: GridColumnHeaderParams) => {
+  return <strong>{params.colDef.headerName}</strong>;
+};
+
 const AddonsTable = ({ loading, error, rows }: AddonsTableProps) => {
   const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 50 },
-    { field: "key", headerName: "Key", width: 300 },
-    { field: "name", headerName: "Name", width: 200 },
+    { field: "key", headerName: "Key", width: 300, renderHeader: withHeader },
+    { field: "name", headerName: "Name", width: 400, renderHeader: withHeader },
   ];
 
   return (
@@ -37,15 +40,14 @@ const AddonsTable = ({ loading, error, rows }: AddonsTableProps) => {
             initialState={{
               pagination: {
                 paginationModel: {
-                  pageSize: 9,
+                  pageSize: 14,
                 },
               },
             }}
+            density="compact"
             pageSizeOptions={[20]}
-            checkboxSelection
             disableRowSelectionOnClick
             slots={{
-              toolbar: GridToolbar,
               loadingOverlay: () => <LinearProgress color="secondary" />,
             }}
           />
