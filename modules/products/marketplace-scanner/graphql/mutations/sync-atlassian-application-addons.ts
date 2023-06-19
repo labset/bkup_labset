@@ -1,4 +1,4 @@
-import { getAppsPaged } from '@labset-library/atlassian-marketplace-api';
+import { getApps } from '@labset-library/atlassian-marketplace-api';
 import { MutationResolvers } from '@labset-mps-graphql/backend-types';
 
 const syncAtlassianApplicationAddons: MutationResolvers['syncAtlassianApplicationAddons'] =
@@ -13,23 +13,18 @@ const syncAtlassianApplicationAddons: MutationResolvers['syncAtlassianApplicatio
             throw Error('[404] not found - handle me');
         }
 
-        await getAppsPaged(
-            {
-                application: applicationKey,
-                limit: 50
-            },
-            async (data) => {
-                await Promise.all(
-                    data._embedded.addons.map(({ name, key }) =>
-                        mpsServices.addon.create({
-                            name,
-                            applicationKey,
-                            addonKey: key
-                        })
-                    )
-                );
-            },
-            { total: 200, current: 0 }
+        const { data } = await getApps({
+            application: applicationKey,
+            limit: 50
+        });
+        await Promise.all(
+            data._embedded.addons.map(({ name, key }) =>
+                mpsServices.addon.create({
+                    name,
+                    applicationKey,
+                    addonKey: key
+                })
+            )
         );
 
         const addons = await mpsServices.addon.list({ applicationKey });
