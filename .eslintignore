@@ -4,3 +4,4 @@ __generated__/
 tmp/
 cdk.out/
 .firebase/
+.yarn/
