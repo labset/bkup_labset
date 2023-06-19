@@ -5,10 +5,10 @@ import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import React, { useMemo } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 
-import { MpsRoutes } from "./../routes";
+import { TaxRoutes } from "./../routes";
 import { clientFactory } from "./client-factory";
 
-const MpsApp = () => {
+const TaxApp = () => {
   const theme = useMemo(
     () =>
       createTheme({
@@ -31,7 +31,7 @@ const MpsApp = () => {
         product={{ key: "tax", gatewayUrl: taxGateway.url }}
       >
         <GraphqlApiProvider clientFactory={clientFactory}>
-          <MpsRoutes />
+          <TaxRoutes />
         </GraphqlApiProvider>
       </AuthenticationProvider>
     </ThemeProvider>
@@ -41,8 +41,8 @@ const MpsApp = () => {
 const rootContainer = document.querySelector("#root");
 if (rootContainer) {
   if (rootContainer.hasChildNodes()) {
-    hydrateRoot(rootContainer, <MpsApp />);
+    hydrateRoot(rootContainer, <TaxApp />);
   } else {
-    createRoot(rootContainer).render(<MpsApp />);
+    createRoot(rootContainer).render(<TaxApp />);
   }
 }

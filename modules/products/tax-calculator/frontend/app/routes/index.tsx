@@ -5,7 +5,7 @@ import { TaxHomePage } from "./tax-home-page";
 import { TaxLoginPage } from "./tax-login-page";
 import { TaxSignInPage } from "./tax-sign-in-page";
 
-const MpsRoutes = () => {
+const TaxRoutes = () => {
   return (
     <HashRouter>
       <Routes>
@@ -18,4 +18,4 @@ const MpsRoutes = () => {
   );
 };
 
-export { MpsRoutes };
+export { TaxRoutes };
