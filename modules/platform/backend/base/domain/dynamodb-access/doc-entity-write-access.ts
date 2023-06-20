@@ -1,11 +1,13 @@
+import type {
+    BatchWriteCommandInput,
+    DeleteCommandInput,
+    PutCommandInput
+} from '@aws-sdk/lib-dynamodb';
 import {
+    BatchWriteCommand,
     DeleteCommand,
     DynamoDBDocumentClient,
     PutCommand
-} from '@aws-sdk/lib-dynamodb';
-import type {
-    PutCommandInput,
-    DeleteCommandInput
 } from '@aws-sdk/lib-dynamodb';
 import {
     IDocEntityWriteAccess,
@@ -26,17 +28,7 @@ class DocEntityWriteAccess<TEntity extends DocEntity>
     ) {}
 
     async save(entity: SaveDocEntityInput<TEntity>): Promise<TEntity> {
-        const { sort, ...record } = entity;
-        const id = `${this.table.part}---${sort}`;
-        const createdAt = record.createdAt ?? new Date();
-        const item = {
-            id,
-            part: this.table.part,
-            sort,
-            ...record,
-            createdAt,
-            updatedAt: new Date()
-        };
+        const item = this.mapEntityToItem(entity);
         const params: PutCommandInput = {
             TableName: this.table.name,
             Item: this.data.marshall({
@@ -58,6 +50,42 @@ class DocEntityWriteAccess<TEntity extends DocEntity>
             }
         };
         await this.ddbDocClient.send(new DeleteCommand(params));
+    }
+
+    async saveMultiple(
+        entities: SaveDocEntityInput<TEntity>[]
+    ): Promise<TEntity[]> {
+        const items = entities.map((entity) => this.mapEntityToItem(entity));
+        const putRequestItems = items.map((item) => ({
+            PutRequest: {
+                Item: { ...item }
+            }
+        }));
+        const params: BatchWriteCommandInput = {
+            RequestItems: {
+                [this.table.name]: putRequestItems
+            }
+        };
+
+        await this.ddbDocClient.send(new BatchWriteCommand(params));
+        // TODO: handle error
+
+        return items as TEntity[];
+    }
+
+    private mapEntityToItem(entity: SaveDocEntityInput<TEntity>): TEntity {
+        const { sort, ...record } = entity;
+        const id = `${this.table.part}---${sort}`;
+        const createdAt = record.createdAt ?? new Date();
+        const item = {
+            id,
+            part: this.table.part,
+            sort,
+            ...record,
+            createdAt,
+            updatedAt: new Date()
+        };
+        return item as TEntity;
     }
 }
 

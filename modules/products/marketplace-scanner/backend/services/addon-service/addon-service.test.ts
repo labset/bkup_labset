@@ -47,4 +47,24 @@ describe('addon-service', () => {
         });
         expect(applications).toHaveLength(1);
     });
+
+    it('should create multiple addons with name and key properties', async () => {
+        const someAddons = await service.createMultiple({
+            applicationKey: application.key,
+            addons: [
+                { name: 'Addon One', addonKey: 'addon-one' },
+                { name: 'Addon Two', addonKey: 'addon-two' }
+            ]
+        });
+
+        expect(someAddons).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    name: 'Addon One',
+                    key: 'addon-one'
+                }),
+                expect.objectContaining({ name: 'Addon Two', key: 'addon-two' })
+            ])
+        );
+    });
 });
