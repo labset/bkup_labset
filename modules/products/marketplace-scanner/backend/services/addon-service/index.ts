@@ -12,6 +12,10 @@ interface IAddonService {
         addonKey: string;
         applicationKey: string;
     }): Promise<Addon>;
+    createMultiple(input: {
+        addons: { name: string; addonKey: string }[];
+        applicationKey: string;
+    }): Promise<Addon[]>;
     list(input: { applicationKey: string }): Promise<Addon[]>;
 }
 
@@ -49,13 +53,31 @@ class AddonService implements IAddonService {
         const entity = found ?? {
             name,
             key: addonKey,
-            applicationKey: applicationKey,
+            applicationKey,
             createdAt: new Date(),
             sort: addonKey
         };
         return await addonAccess.writer.save({
             ...entity
         });
+    }
+
+    async createMultiple({
+        addons,
+        applicationKey
+    }: {
+        addons: { name: string; addonKey: string }[];
+        applicationKey: string;
+    }): Promise<Addon[]> {
+        const addonAccess = this.access.addon(applicationKey);
+        const entities = addons.map(({ name, addonKey }) => ({
+            name,
+            key: addonKey,
+            applicationKey,
+            createdAt: new Date(),
+            sort: addonKey
+        }));
+        return await addonAccess.writer.saveMultiple(entities);
     }
 
     async list(input: { applicationKey: string }): Promise<Addon[]> {
