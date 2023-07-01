@@ -1,6 +1,6 @@
 import { QueryResolvers } from '@labset-mps-graphql/backend-types';
 
-const listApplicationAddons: QueryResolvers['listApplicationAddons'] = async (
+const getApplication: QueryResolvers['getApplication'] = async (
     _,
     { applicationId },
     ctx
@@ -13,8 +13,7 @@ const listApplicationAddons: QueryResolvers['listApplicationAddons'] = async (
         throw Error('[404] not found - handle me');
     }
 
-    const addons = await mpsServices.addon.list({ applicationKey: key });
-    return addons.map((addon) => ({ ...addon, application }));
+    return application;
 };
 
-export { listApplicationAddons };
+export { getApplication };

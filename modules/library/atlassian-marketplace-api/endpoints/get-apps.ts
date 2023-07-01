@@ -41,7 +41,8 @@ export const getApps = async (params?: GetAppsQueryParameters) => {
 
 export const getAppsPaged = async (
     params: GetAppsQueryParameters | string,
-    fn: (collection: AddonCollection) => Promise<void>
+    fn: (collection: AddonCollection) => Promise<void>,
+    ctx: { total: number; current: number } = { total: 0, current: 0 }
 ): Promise<unknown> => {
     const query =
         typeof params === 'string'
@@ -49,10 +50,18 @@ export const getAppsPaged = async (
             : querystring.stringify(params || {});
     const { data } = await api.get<AddonCollection>(`/rest/2/addons?${query}`);
     await fn(data);
+
+    if (ctx.total > 0) {
+        ctx.current += data._embedded.addons.length;
+        if (ctx.current >= ctx.total) {
+            return Promise.resolve();
+        }
+    }
+
     const { next } = data._links;
     const nextQuery = next
         ?.filter((n) => n.type === 'application/json')
         .map((l) => l.href.replace(/\/rest\/2\/addons\?/, ''));
     if (!nextQuery) return Promise.resolve();
-    return await getAppsPaged(nextQuery[0], fn);
+    return await getAppsPaged(nextQuery[0], fn, ctx);
 };

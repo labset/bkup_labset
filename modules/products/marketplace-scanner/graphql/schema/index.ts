@@ -19,7 +19,11 @@ const config: CodegenConfig = {
             plugins: [...backendPlugins],
             config: {
                 ...backendConfig,
-                contextType: '@labset-mps-graphql/context#IMpsApolloContext'
+                contextType: '@labset-mps-graphql/context#IMpsApolloContext',
+                mappers: {
+                    Application:
+                        '@labset-mps-backend/domain-api-entity#Application'
+                }
             }
         },
         '../@types/frontend/__generated__/api.ts': {

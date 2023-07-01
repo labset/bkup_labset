@@ -1,0 +1,6 @@
+{
+  "name": "@labset-mps-frontend/applications-info-feature",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.tsx"
+}
