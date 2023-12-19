@@ -1,6 +1,0 @@
-{
-  "name": "@labset-tax-graphql/frontend-types",
-  "version": "1.0.0",
-  "main": "./__generated__/api.ts",
-  "private": true
-}

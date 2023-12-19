@@ -1,6 +1,0 @@
-{
-  "name": "@labset-tax-frontend/tax-gateway-component",
-  "version": "1.0.0",
-  "private": true,
-  "main": "index.tsx"
-}

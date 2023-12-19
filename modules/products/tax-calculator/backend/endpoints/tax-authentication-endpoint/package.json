@@ -1,6 +1,0 @@
-{
-  "name": "@labset-tax-backend/tax-authentication-endpoint",
-  "version": "1.0.0",
-  "private": true,
-  "main": "index.ts"
-}

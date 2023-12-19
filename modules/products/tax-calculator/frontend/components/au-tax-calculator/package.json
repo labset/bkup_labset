@@ -1,6 +1,0 @@
-{
-  "name": "@labset-tax-frontend/au-tax-calculator-component",
-  "version": "1.0.0",
-  "private": true,
-  "main": "index.tsx"
-}

@@ -1,6 +1,0 @@
-{
-  "name": "@labset-tax-graphql/context",
-  "version": "1.0.0",
-  "private": true,
-  "main": "index.ts"
-}
