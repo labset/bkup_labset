@@ -1,6 +1,6 @@
 import { Layout } from "@labset-platform-frontend-core/layout-component";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import HiveIcon from "@mui/icons-material/Hive";
+import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import SecurityIcon from "@mui/icons-material/Security";
 import React from "react";
 
@@ -15,9 +15,9 @@ const HarnessHomePage = () => {
         productUrl={"http://localhost:8000"}
       />
       <ProductCard
-        productTitle={"Tax Calculator"}
+        productTitle={"Publisher"}
         productUrl={"http://localhost:7000"}
-        Logo={AttachMoneyIcon}
+        Logo={LocalLibraryIcon}
       />
     </Layout>
   );

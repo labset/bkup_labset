@@ -1,0 +1,12 @@
+{
+  "name": "@labset-publisher-frontend/app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "webpack serve",
+    "build": "LABSET_ENV=development webpack",
+    "firebase": "firebase",
+    "preview": "firebase hosting:channel:deploy",
+    "deploy": "yarn build && firebase deploy --only hosting"
+  }
+}

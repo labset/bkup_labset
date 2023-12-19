@@ -3,7 +3,8 @@ import { mpsBootstrap } from '@labset-mps-backend/boostrap';
 import { localstackDynamoDbClientConfig } from '@labset-plaform-backend-base/domain-dynamodb-access';
 import { coreBootstrap } from '@labset-platform-backend-core/bootstrap';
 import { withLocalstack } from '@labset-platform-backend-core/with-localstack';
-import { taxApiGateway } from '@labset-tax-backend/api-gateway';
+import { publisherApiGateway } from '@labset-publisher-backend/api-gateway';
+import { publisherBootstrap } from '@labset-publisher-backend/boostrap';
 import express, { Express } from 'express';
 
 interface WithExpressApp {
@@ -26,8 +27,12 @@ const configureEndpoints = async ({
         runUpgrade: true,
         dynamoDbClientConfig: localstackDynamoDbClientConfig
     });
+    const { publisher } = await publisherBootstrap({
+        runUpgrade: true,
+        dynamoDbClientConfig: localstackDynamoDbClientConfig
+    });
     await mpsApiGateway({ app, core, mps });
-    await taxApiGateway({ app, core });
+    await publisherApiGateway({ app, core, publisher });
     return { app };
 };
 
