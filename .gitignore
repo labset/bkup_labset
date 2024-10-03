@@ -7,3 +7,6 @@ __generated__/
 tmp/
 cdk.out/
 .firebase/
+.yarn/cache/
+.yarn/install-state.gz
+.yarn/unplugged
